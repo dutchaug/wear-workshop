@@ -21,16 +21,33 @@
     android:orientation="vertical"
     tools:context=".PhoneActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="192dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="-32dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitEnd"
-        android:src="@drawable/dutchaug" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#f0f0f0"
+            android:layout_gravity="bottom"
+            android:padding="8dp"
+            android:text="This is a sample project provided by Google for The Dutch Android User Group's workshop on Android Wear."
+            android:textColor="#80000000" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="192dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="-32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitEnd"
+            android:src="@drawable/dutchaug" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -99,14 +116,6 @@
                     android:layout_height="1dp"
                     android:background="?android:attr/dividerHorizontal" />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#f0f0f0"
-                android:padding="8dp"
-                android:text="This is a sample project provided by Google for The Dutch Android User Group's workshop on Android Wear."
-                android:textColor="#80000000" />
 
             <Space
                 android:layout_width="match_parent"

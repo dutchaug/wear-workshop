@@ -17,10 +17,13 @@
 <resources>
 
     <string name="app_name">Synchronized Notifications</string>
-    <string name="wear_only">Watch Only Notification</string>
-    <string name="phone_only">Phone Only Notification</string>
-    <string name="different_notifications">Different Notifications</string>
-    <string name="phone_both">Phone Notification</string>
-    <string name="watch_both">Watch Notification</string>
+    <string name="wear_only">Watch-only notification</string>
+    <string name="rich">Rich notification</string>
+    <string name="phone_only">Phone-only notification</string>
+    <string name="different_notifications">Mirrored notifications</string>
+    <string name="phone_both">Phone notification</string>
+    <string name="watch_both">Watch notification</string>
+    <string name="action_title">Do magic</string>
+    <string name="magic_message">Magic!</string>
 
 </resources>

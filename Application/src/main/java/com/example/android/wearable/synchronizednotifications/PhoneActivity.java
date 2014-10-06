@@ -19,6 +19,7 @@ package com.example.android.wearable.synchronizednotifications;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
@@ -60,6 +61,7 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone);
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)
                 .addConnectionCallbacks(this)
@@ -74,12 +76,13 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
      * be able to remove the mirrored notification on the wearable.
      */
     private void buildLocalOnlyNotification(String title, String content, int notificationId,
-            boolean withDismissal) {
+                                            boolean withDismissal) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle(title)
                 .setContentText(content)
                 .setLocalOnly(true)
-                .setSmallIcon(R.drawable.ic_launcher);
+                .setSmallIcon(R.drawable.ic_notification)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_notification_big));
 
         if (withDismissal) {
             Intent dismissIntent = new Intent(Constants.ACTION_DISMISS);
@@ -89,6 +92,50 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
             builder.setDeleteIntent(pendingIntent);
         }
         NotificationManagerCompat.from(this).notify(notificationId, builder.build());
+    }
+
+    private void buildRichNotification(String title, String content, int notificationId) {
+        // Create a WearableExtender to add functionality for wearables
+        NotificationCompat.WearableExtender wearableExtender =
+                new NotificationCompat.WearableExtender()
+                        .setHintHideIcon(true)
+                        .setBackground(BitmapFactory.decodeResource(getResources(), R.drawable.dutchaug));
+
+        // Build intent for notification content
+        Intent viewIntent = new Intent(this, ActionActivity.class);
+        viewIntent.putExtra(ActionActivity.EXTRA_NOTIFICATION_ID, notificationId);
+        PendingIntent viewPendingIntent =
+                PendingIntent.getActivity(this, 0, viewIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // Build intent for action notification content
+        Intent actionIntent = new Intent(this, ActionActivity.class);
+        actionIntent.setAction(ActionActivity.ACTION_DO_MAGIC);
+        actionIntent.putExtra(ActionActivity.EXTRA_NOTIFICATION_ID, notificationId);
+        PendingIntent actionPendingIntent =
+                PendingIntent.getActivity(this, 0, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Action action =
+                new NotificationCompat.Action.Builder(R.drawable.ic_action,
+                        getString(R.string.action_title), actionPendingIntent).build();
+        wearableExtender.addAction(action);
+
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_notification)
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_notification_big))
+                        .setContentTitle(title)
+                        .setContentText(content)
+                        .setContentIntent(viewPendingIntent)
+                        .extend(wearableExtender)
+                        .addAction(R.drawable.ic_action,
+                                getString(R.string.rich), actionPendingIntent);
+
+        // Get an instance of the NotificationManager service
+        NotificationManagerCompat notificationManager =
+                NotificationManagerCompat.from(this);
+
+        // Build the notification and issues it with notification manager.
+        notificationManager.notify(notificationId, notificationBuilder.build());
     }
 
     /**
@@ -175,6 +222,10 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
+            case R.id.rich:
+                buildRichNotification(getString(R.string.rich), now(),
+                        Constants.PHONE_ONLY_ID);
+                break;
             case R.id.phone_only:
                 buildLocalOnlyNotification(getString(R.string.phone_only), now(),
                         Constants.PHONE_ONLY_ID, false);

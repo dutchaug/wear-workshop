@@ -32,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ActionActivity" />
         <service android:name=".DismissListener">
             <intent-filter>
                 <action
