@@ -114,11 +114,10 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
         PendingIntent actionPendingIntent =
                 PendingIntent.getActivity(this, 0, actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Action action =
-                new NotificationCompat.Action.Builder(R.drawable.ic_action,
-                        getString(R.string.action_title), actionPendingIntent).build();
-
-        // Uncomment this line to show a different text for the action
+        // Uncomment these lines to show a different text for the action
+        //NotificationCompat.Action action =
+        //        new NotificationCompat.Action.Builder(R.drawable.ic_action,
+        //                getString(R.string.action_title), actionPendingIntent).build();
         //wearableExtender.addAction(action);
 
         NotificationCompat.Builder notificationBuilder =
@@ -130,7 +129,7 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
                         .setContentIntent(viewPendingIntent)
                         .extend(wearableExtender)
                         .addAction(R.drawable.ic_action,
-                                getString(R.string.rich), actionPendingIntent);
+                                getString(R.string.action_title), actionPendingIntent);
 
         // Get an instance of the NotificationManager service
         NotificationManagerCompat notificationManager =
