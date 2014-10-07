@@ -65,12 +65,12 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/rich"
+                    android:id="@+id/simple"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onClick"
-                    android:text="@string/rich" />
+                    android:text="@string/simple" />
 
                 <View
                     android:layout_width="match_parent"

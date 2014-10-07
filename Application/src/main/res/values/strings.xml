@@ -18,7 +18,7 @@
 
     <string name="app_name">Synchronized Notifications</string>
     <string name="wear_only">Watch-only notification</string>
-    <string name="rich">Rich notification</string>
+    <string name="simple">Simple notification</string>
     <string name="phone_only">Phone-only notification</string>
     <string name="different_notifications">Mirrored notifications</string>
     <string name="phone_both">Phone notification</string>

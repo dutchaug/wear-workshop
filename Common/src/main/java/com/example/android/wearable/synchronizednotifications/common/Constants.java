@@ -23,6 +23,7 @@ public final class Constants {
 
     private Constants() {};
 
+    public static final int SIMPLE_ID = 1;
     public static final int WATCH_ONLY_ID = 2;
     public static final int PHONE_ONLY_ID = 3;
     public static final int BOTH_ID = 4;
