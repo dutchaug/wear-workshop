@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2014 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2014 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,32 +14,35 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.wearable.synchronizednotifications" >
+    package="org.dutchaug.android.wearable.notifications">
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.DeviceDefault.Light" >
-        <meta-data android:name="com.google.android.gms.version"
-                   android:value="@integer/google_play_services_version" />
+        android:theme="@android:style/Theme.DeviceDefault.Light">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
-            android:name=".PhoneActivity"
-            android:label="@string/app_name" >
+            android:name="org.dutchaug.android.wearable.notifications.PhoneActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActionActivity" />
-        <service android:name=".DismissListener">
+        <activity
+            android:name=".ActionActivity"
+            android:parentActivityName=".PhoneActivity" />
+
+        <service android:name="org.dutchaug.android.wearable.notifications.DismissListener">
             <intent-filter>
-                <action
-                    android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
             </intent-filter>
             <intent-filter>
-                <action
-                    android:name="com.example.android.wearable.synchronizednotifications.DISMISS" />
+                <action android:name="org.dutchaug.android.wearable.notifications.DISMISS" />
             </intent-filter>
         </service>
     </application>

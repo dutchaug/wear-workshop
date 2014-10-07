@@ -15,7 +15,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.wearable.synchronizednotifications" >
+    package="org.dutchaug.android.wearable.notifications" >
 
     <uses-feature android:name="android.hardware.type.watch" />
 
@@ -41,7 +41,7 @@
             </intent-filter>
             <intent-filter>
                 <action
-                    android:name="com.example.android.wearable.synchronizednotifications.DISMISS" />
+                    android:name="org.dutchaug.android.wearable.notifications.DISMISS" />
             </intent-filter>
         </service>
     </application>

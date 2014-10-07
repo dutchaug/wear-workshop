@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.wearable.synchronizednotifications;
+package org.dutchaug.android.wearable.notifications;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.wearable.synchronizednotifications.common;
+package org.dutchaug.android.wearable.notifications.common;
 
 /**
  * Constants that are used in both the Application and the Wearable modules.
@@ -35,5 +35,5 @@ public final class Constants {
     public static final String KEY_CONTENT = "content";
 
     public static final String ACTION_DISMISS
-            = "com.example.android.wearable.synchronizednotifications.DISMISS";
+            = "org.dutchaug.android.wearable.notifications.DISMISS";
 }

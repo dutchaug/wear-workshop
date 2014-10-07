@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.wearable.synchronizednotifications;
+package org.dutchaug.android.wearable.notifications;
 
 import static com.google.android.gms.wearable.PutDataRequest.WEAR_URI_SCHEME;
 
@@ -26,7 +26,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.android.wearable.synchronizednotifications.common.Constants;
+import org.dutchaug.android.wearable.notifications.common.Constants;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;

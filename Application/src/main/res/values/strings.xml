@@ -16,7 +16,7 @@
 
 <resources>
 
-    <string name="app_name">Synchronized Notifications</string>
+    <string name="app_name">Android Wear Workshop</string>
     <string name="wear_only">Watch-only notification</string>
     <string name="simple">Simple notification</string>
     <string name="phone_only">Phone-only notification</string>
