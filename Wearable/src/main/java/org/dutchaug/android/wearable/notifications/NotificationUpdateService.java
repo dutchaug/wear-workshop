@@ -16,8 +16,6 @@
 
 package org.dutchaug.android.wearable.notifications;
 
-import static com.google.android.gms.wearable.PutDataRequest.WEAR_URI_SCHEME;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -26,7 +24,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.dutchaug.android.wearable.notifications.common.Constants;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -35,9 +32,12 @@ import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.DataMapItem;
-import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.Wearable;
 import com.google.android.gms.wearable.WearableListenerService;
+
+import org.dutchaug.android.wearable.notifications.common.Constants;
+
+import static com.google.android.gms.wearable.PutDataRequest.WEAR_URI_SCHEME;
 
 /**
  * A {@link com.google.android.gms.wearable.WearableListenerService} that will be invoked when a
@@ -117,13 +117,14 @@ public class NotificationUpdateService extends WearableListenerService
      * Builds a simple notification on the wearable.
      */
     private void buildWearableOnlyNotification(String title, String content,
-            boolean withDismissal) {
-        Notification.Builder builder = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(content);
+                                               boolean withDismissal) {
+        Notification.Builder builder = new Notification.Builder(this);
+        builder.setContentTitle(title)
+                .setContentText(content)
+                .setSmallIcon(R.drawable.ic_launcher);
 
         if (withDismissal) {
+            // Send an intent when the notification is deleted
             Intent dismissIntent = new Intent(Constants.ACTION_DISMISS);
             dismissIntent.putExtra(Constants.KEY_NOTIFICATION_ID, Constants.BOTH_ID);
             PendingIntent pendingIntent = PendingIntent
@@ -131,8 +132,11 @@ public class NotificationUpdateService extends WearableListenerService
             builder.setDeleteIntent(pendingIntent);
         }
 
-        ((NotificationManager) getSystemService(NOTIFICATION_SERVICE))
-                .notify(Constants.WATCH_ONLY_ID, builder.build());
+        // Get an instance of the NotificationManager service
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        // Build the notification and issues it with notification manager
+        notificationManager.notify(Constants.WATCH_ONLY_ID, builder.build());
     }
 
     @Override

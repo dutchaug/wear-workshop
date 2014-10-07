@@ -114,7 +114,7 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
         // Get an instance of the NotificationManager service
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
-        // Build the notification and issues it with notification manager.
+        // Build the notification and issues it with notification manager
         notificationManager.notify(notificationId, builder.build());
     }
 
@@ -151,6 +151,7 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
         builder.addAction(R.drawable.ic_action, getString(R.string.action_title), actionPendingIntent);
 
         if (withDismissal) {
+            // Send an intent when the notification is deleted
             Intent dismissIntent = new Intent(Constants.ACTION_DISMISS);
             dismissIntent.putExtra(Constants.KEY_NOTIFICATION_ID, Constants.BOTH_ID);
             PendingIntent pendingIntent = PendingIntent
@@ -161,7 +162,7 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
         // Get an instance of the NotificationManager service
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
-        // Build the notification and issues it with notification manager.
+        // Build the notification and issues it with notification manager
         notificationManager.notify(notificationId, builder.build());
     }
 
