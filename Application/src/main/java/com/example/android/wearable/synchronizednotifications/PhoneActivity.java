@@ -117,7 +117,9 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
         NotificationCompat.Action action =
                 new NotificationCompat.Action.Builder(R.drawable.ic_action,
                         getString(R.string.action_title), actionPendingIntent).build();
-        wearableExtender.addAction(action);
+
+        // Uncomment this line to show a different text for the action
+        //wearableExtender.addAction(action);
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
