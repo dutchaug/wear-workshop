@@ -32,28 +32,6 @@ public class ActionActivity extends Activity {
             if (ACTION_DO_MAGIC.equals(intent.getAction())) {
                 Toast.makeText(this, getString(R.string.magic_message), Toast.LENGTH_SHORT).show();
                 Animation anim = AnimationUtils.loadAnimation(this, R.anim.bugdroid);
-                if (true) {
-                    anim.setRepeatCount(Animation.INFINITE);
-                    anim.setRepeatMode(Animation.REVERSE);
-                } else
-                    anim.setAnimationListener(new Animation.AnimationListener() {
-
-                        @Override
-                        public void onAnimationEnd(Animation anim) {
-                            anim.reset();
-                            ivBugdroid.startAnimation(anim);
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation anim) {
-                        }
-
-                        @Override
-                        public void onAnimationStart(Animation anim) {
-                        }
-
-                    });
                 ivBugdroid.startAnimation(anim);
             }
             int notificationId = intent.getIntExtra(EXTRA_NOTIFICATION_ID, 0);
