@@ -157,12 +157,9 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
         builder.addAction(R.drawable.ic_action, getString(R.string.action_title), actionPendingIntent);
 
         if (withDismissal) {
-            // Send an intent when the notification is deleted
-            Intent dismissIntent = new Intent(Constants.ACTION_DISMISS);
-            dismissIntent.putExtra(Constants.KEY_NOTIFICATION_ID, Constants.BOTH_ID);
-            PendingIntent pendingIntent = PendingIntent
-                    .getService(this, 0, dismissIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            builder.setDeleteIntent(pendingIntent);
+            /**
+             * INSERT CODE HERE
+             */
         }
 
         // Get an instance of the NotificationManager service
@@ -176,26 +173,10 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
      * Builds a DataItem that on the wearable will be interpreted as a request to show a
      * notification. The result will be a notification that only shows up on the wearable.
      */
-    private void buildWearableOnlyNotification(String title, String content, String path) {
-        if (mGoogleApiClient.isConnected()) {
-            PutDataMapRequest putDataMapRequest = PutDataMapRequest.create(path);
-            putDataMapRequest.getDataMap().putString(Constants.KEY_CONTENT, content);
-            putDataMapRequest.getDataMap().putString(Constants.KEY_TITLE, title);
-            PutDataRequest request = putDataMapRequest.asPutDataRequest();
-            Wearable.DataApi.putDataItem(mGoogleApiClient, request)
-                    .setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
-                        @Override
-                        public void onResult(DataApi.DataItemResult dataItemResult) {
-                            if (!dataItemResult.getStatus().isSuccess()) {
-                                Log.e(TAG, "buildWatchOnlyNotification(): Failed to set the data, "
-                                        + "status: " + dataItemResult.getStatus().getStatusCode());
-                            }
-                        }
-                    });
-        } else {
-            Log.e(TAG, "buildWearableOnlyNotification(): no Google API Client connection");
-        }
-    }
+
+    /**
+     *  INSERT CODE HERE FOR buildWearableOnlyNotification
+     */
 
     /**
      * Builds a local notification and sets a DataItem that will be interpreted by the wearable as
