@@ -1,17 +1,30 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '20'
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 19
+        targetSdkVersion 22
         versionCode 1
         versionName '1.0'
     }
+    signingConfigs {
+        releaseConfig {
+            storeFile file('../keystore/release.jks')
+            storePassword('dutchaug.org')
+            keyAlias('dutchaug')
+            keyPassword('dutchaug.org')
+        }
+    }
     buildTypes {
+        debug {
+            // also sign the debug version with the same key
+            signingConfig signingConfigs.releaseConfig
+        }
         release {
-            runProguard false
+            minifyEnabled false
+            signingConfig signingConfigs.releaseConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
